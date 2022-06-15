@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>meme gallery</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <header class="main-header">
+      <div class="header-content main-layout flex align-center space-between">
+        <div class="main-logo">memeker</div>
+
+        <ul class="main-nav flex clean-list">
+          <li>
+            <a href="#" class="active" onclick="onActivePage(this)">Gallery</a>
+          </li>
+          <li><a href="memes.html" onclick="onActivePage(this)">Memes</a></li>
+          <li><a href="#" onclick="onActivePage(this)">About</a></li>
+        </ul>
+        <button class="hamburger-btn" onclick="toggleHamburger()">☰</button>
+      </div>
+    </header>
+    <br>
+    <main class="main-layout">
+        <div>
+            <input type="text" name="text" placeholder="Search" />
+            choose file:<input
+            type="file"
+            class="file-input btn"
+            name="image"
+            onchange="onImgInput(event)"/>
+        </div>
+        <br>
+        <section class="gallery-container">
+        <img src="img/bed note.jfif" />
+        <img src="img/bobspog.jfif" />
+        <img src="img/choose.jfif" />
+        <img src="meme-imgs (square)/2.jpg" />
+        <!-- <img src="img/cry.jfif" /> -->
+        <img src="img/crying Labron.jpeg" />
+        <img src="img/lo margish tape.jfif" />
+        <img src="img/no no no hi.jfif" />
+        <img src="meme-imgs (square)/3.jpg" />
+        <img src="img/powers.jpeg" />
+        <!-- <img src="img/red button.jfif" /> -->
+        <img src="meme-imgs (square)/12.jpg" />
+        <img src="img/rick and morty.jpeg" />
+        <img src="img/אמבטיה חול.jpeg" />
+        </section>
+    </main>
+    <script src="main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>meme editor</title>
+    <link rel="stylesheet" href="css/style.css">
+  </head>
+  <body>
+    <header class="main-header">
+      <div class="header-content main-layout flex align-center space-between">
+        <div class="main-logo">memeker</div>
+
+        <ul class="main-nav flex clean-list">
+          <li><a href="gallery.html" onclick="onActivePage(this)">Gallery</a></li>
+          <li><a href="#" class="active" onclick="onActivePage(this)">Memes</a></li>
+          <li><a href="#" onclick="onActivePage(this)">About</a></li>
+        </ul>
+        <button class="hamburger-btn" onclick="toggleHamburger()">☰</button>
+      </div>
+    </header>
+
+    <script src="main.js"></script>
+  </body>
+</html>

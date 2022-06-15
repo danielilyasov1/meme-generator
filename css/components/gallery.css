@@ -1,0 +1,26 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0
+}
+
+img{
+    height:8em;
+    width:8em;
+    border: 1px solid black;
+}
+
+.gallery-container{
+    background-color: rgb(197, 195, 195);
+    border: 1px solid black;
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(120px,1fr));
+    gap: 20px;
+    padding: 20px;
+    grid-auto-flow: dense;
+    margin: 0 auto;
+    justify-content: center;
+    align-content: center;
+}
