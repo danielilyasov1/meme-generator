@@ -1,0 +1,48 @@
+.editor-container {
+  padding-top: 40px;
+  width: 100%;
+}
+
+.editor {
+  flex-direction: column;
+  padding: 0 50px;
+}
+
+.editor input {
+  margin-bottom: 20px;
+}
+
+.editor-options {
+  margin-bottom: 20px;
+}
+
+.editor-options a {
+  margin-inline-end: 10px;
+}
+
+.btn-option {
+  padding: 5px;
+  height: 45px;
+  width: 45px;
+  cursor: pointer;
+  border: 1px solid #c5c3c3;
+  background-color: #8b12ee;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn-option img {
+  height: 30px;
+}
+
+.editor-text-options {
+  grid-template-columns: repeat(5, 1fr);
+  gap: 8px 8px;
+  margin-bottom: 15px;
+}
+
+.font-select {
+  grid-column: span 3;
+}
