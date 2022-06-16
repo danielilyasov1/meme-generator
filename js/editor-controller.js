@@ -1,29 +1,11 @@
 "use strict"
 
-var gCanvas
-var gCtx
+
 var gIsDrag = false
 var elText = ""
 var gColorSh = document.querySelector("[name=fill-color]").value
 var gColorSt = document.querySelector("[name=stroke-color]").value
 const gTouchEvs = ["touchstart", "touchmove", "touchend"]
-
-function init() {
-  gCanvas = document.querySelector(".my-canvas")
-  gCtx = gCanvas.getContext("2d")
-  console.log(gCanvas)
-  addListeners()
-  renderCanvas()
- 
-}
-
-function renderCanvas() {
-    //Set the backgournd color to grey 
-    gCtx.fillStyle = "#c5c3c3"
-    //Clear the canvas,  fill it with grey background
-    gCtx.fillRect(0, 0, gCanvas.width, gCanvas.height)
-
-}
 
 function addListeners() {
   addMouseListeners()

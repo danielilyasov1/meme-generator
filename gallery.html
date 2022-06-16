@@ -24,10 +24,8 @@
     </header>
     <br />
 
-    <main class="main-layout">
+    <main class="main-layout ">
       <section class="gallery">
-        <a href="editor.html">go edit</a>
-
         <form onsubmit="onSearchMemes(event,this.value)">
           <input class="text-input" type="text" placeholder="Search... " />
           <button>Search</button> choose file:<input
@@ -43,12 +41,85 @@
         </form>
         <div class="gallery-container grid"></div>
       </section>
-      
+      <section class="editor-container flex justify-center">
+        <div class="canvas-container">
+          <canvas
+            class="my-canvas"
+            height="500"
+            width="500"
+            onclick="draw(event)"
+            style="border: 1px solid rgb(0, 0, 0)"
+          ></canvas>
+        </div>
+    
+        <div class="editor flex">
+          <input
+            type="text"
+            class="text"
+            placeholder="insert text"
+            oninput="onSetTextLine(this.value)"
+          />
+    
+          <div class="editor-options flex justify-center align-center">
+            <a href="#" class="btn-option text-updown">
+              <img src="ICONS/up-and-down-opposite-double-arrows-side-by-side.png" alt="" />
+            </a>
+            <a href="#" class="btn-option text-add">
+              <img src="ICONS/add.png" alt="" />
+            </a>
+            <a href="#" class="btn-option text-delete">
+              <img src="ICONS/trash.png" alt="" />
+            </a>
+          </div>
+    
+          <div class="editor-text-options grid">
+            <a
+              href="#"
+              class="btn-option text-increase"
+              onclick="onChangeFontSize(5)"
+            >
+              <img src="ICONS/increase font - icon.png" alt="" />
+            </a>
+            <a
+              href="#"
+              class="btn-option text-decrease"
+              onclick="onChangeFontSize(-5)"
+            >
+              <img src="ICONS/decrease font - icon.png" alt="" />
+            </a>
+            <a href="#" class="btn-option text-align-left">
+              <img src="ICONS/align-to-left.png" alt="" />
+            </a>
+            <a href="#" class="btn-option text-align-center">
+              <img src="ICONS/center-text-alignment.png" alt="" />
+            </a>
+            <a href="#" class="btn-option align-right-">
+              <img src="ICONS/align-to-right.png" alt="" />
+            </a>
+            <select class="font-select">
+              <option value="impact">Impact</option>
+              <option value="impact">Ariel</option>
+            </select>
+           
+            <input
+              type="color"
+              name="fill-color"
+              class="color"
+              oninput="onChangeFillColor(this.value)"
+            />
+            <input
+              type="color"
+              name="stroke-color"
+              class="color"
+              oninput="onChangeStrokeColor(this.value)"
+            />
+          </div>
+        </section>
     </main>
 <footer>© created by Danielle Ilyasov jun 2022</footer>
     <script src="js/gallery-controller.js"></script>
-    <!-- <script src="js/editor-controller.js"></script> -->
     <script src="js/meme-controller.js"></script>
     <script src="js/meme-service.js"></script>
+    <script src="js/editor-controller.js"></script>
   </body>
 </html>

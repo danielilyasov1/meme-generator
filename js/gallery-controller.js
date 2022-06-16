@@ -1,6 +1,14 @@
 "use strict"
+var elText = ""
+var gColorSt = document.querySelector("[name=stroke-color]").value
+var gColorSh = document.querySelector("[name=fill-color]").value
+
 function init() {
   renderGallery()
+  gCanvas = document.querySelector(".my-canvas")
+  gCtx = gCanvas.getContext("2d")
+  console.log(gCanvas)
+  
 }
 
 function onActivePage(el) {
@@ -54,7 +62,7 @@ function onSearchMemes(e) {
 }
 
 function renderGallery() {
-  const imgs = getImgs()
+  const imgs = getImg()
 
   const strHTMLs = imgs.map(
     (img) => `<article class="meme-gallery" onclick="onImgSelect(${img.id})">
@@ -63,4 +71,12 @@ function renderGallery() {
   )
 
   document.querySelector(".gallery-container").innerHTML = strHTMLs.join("")
+  
 }
+
+function onImgSelect(imgId){
+  setImg(imgId)
+  renderMeme()
+  elImgGallery.style.display = 'none'
+    elEditor.style.display = 'block'
+  }

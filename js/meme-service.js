@@ -1,3 +1,4 @@
+'use strict'
 var gKeywordSearchCountMap = { funny: 12, cat: 16, baby: 2 }
 var gImgs = [
   { id: 1, url: "img/1.jpg", keywords: ["funny", "politition"] },
@@ -23,24 +24,41 @@ var gImgs = [
 var gSearchFilter = ''
 
 var gMeme = {
-  selectedImgId: 5,
+  selectedImgId: 0,
   selectedLineIdx: 0,
   lines: [
     {
-      txt: "I love memes",
+      txt: "I like memes",
+      weight: '600',
       size: 20,
       align: "left",
       color: "red",
       stroke: "black",
       fontSize: "50px",
+      pos: { x: 10, y: 100 },
+
     },
     {
       txt: "I like memeker",
+      weight: '600',
       size: 20,
       align: "left",
       color: "red",
       stroke: "black",
       fontSize: "50px",
+      pos: { x: 10, y: 300 },
+
+    },
+    {
+      txt: "I like memeker",
+      weight: '700',
+      size: 20,
+      align: "left",
+      color: "red",
+      stroke: "black",
+      fontSize: "50px",
+      pos: { x: 10, y: 200 },
+
     },
   ],
 }
@@ -49,13 +67,18 @@ function setTextLine(txt) {
   gMeme.lines[gMeme.selectedLineIdx].txt = txt
 }
 
-function getMeme() {
-  return gMeme
-}
-
-function getImgs() {
+function getImg() {
   if (!gSearchFilter) return gImgs
     return gImgs.filter(img => img.keywords.includes(gSearchFilter))
+}
+
+function setImg(imgId) {
+  gMeme.selectedImgId = imgId
+}
+
+function getMeme() {
+  const img = gImgs.find(img => img.id === gMeme.selectedImgId)
+  return img
 }
 
 function changeFontSize(diff) {
@@ -66,4 +89,8 @@ function changeFontSize(diff) {
 
 function setSearchFilter(value) {
   gSearchFilter = value.toLowerCase()
+}
+
+function getLineWidth() {
+  return gMeme.lines[gMeme.selectedLineIdx].width
 }
