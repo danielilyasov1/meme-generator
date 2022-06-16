@@ -14,8 +14,9 @@ function init() {
   console.log(gCanvas)
   addListeners()
   renderCanvas()
-
+ 
 }
+
 function renderCanvas() {
     //Set the backgournd color to grey 
     gCtx.fillStyle = "#c5c3c3"
@@ -23,6 +24,7 @@ function renderCanvas() {
     gCtx.fillRect(0, 0, gCanvas.width, gCanvas.height)
 
 }
+
 function addListeners() {
   addMouseListeners()
   addTouchListeners()

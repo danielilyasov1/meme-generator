@@ -17,19 +17,20 @@
   color: #1e1e1e;
 }
 
-.main-nav li {
+/* .main-nav li {
   border-inline-end: 1px solid #1d1d1d;
 }
 
 .main-nav li:first-child {
   border-inline-start: 1px solid #1d1d1d;
-}
+} */
 
 .main-nav li > a {
   display: flex;
   justify-content: center;
   align-items: center;
   text-decoration: none;
+  font-style: bold;
   color: rgb(23, 22, 22);
 }
 

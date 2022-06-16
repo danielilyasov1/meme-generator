@@ -1,3 +1,8 @@
+"use strict"
+function init() {
+  renderGallery()
+}
+
 function onActivePage(el) {
   const elLink = document.querySelector("a.active")
   elLink.classList.remove("active")
@@ -39,4 +44,23 @@ function loadImageFromInput(ev, onImageReady) {
 function renderImg(img) {
   //Draw the img on the canvas
   gCtx.drawImage(img, 0, 0, gCanvas.width, gCanvas.height)
+}
+
+function onSearchMemes(e) {
+  e.preventDefault()
+  const searchTxt = document.querySelector(".text-input").value
+  setSearchFilter(searchTxt)
+  renderGallery()
+}
+
+function renderGallery() {
+  const imgs = getImgs()
+
+  const strHTMLs = imgs.map(
+    (img) => `<article class="meme-gallery" onclick="onImgSelect(${img.id})">
+              <img src="${img.url}"  alt="" />
+            </article> `
+  )
+
+  document.querySelector(".gallery-container").innerHTML = strHTMLs.join("")
 }

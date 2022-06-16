@@ -7,7 +7,7 @@
     <title>meme gallery</title>
     <link rel="stylesheet" href="css/style.css" />
   </head>
-  <body>
+  <body onload="init()">
     <header class="main-header">
       <div class="header-content main-layout flex align-center space-between">
         <div class="main-logo">memeker</div>
@@ -22,35 +22,33 @@
         <button class="hamburger-btn" onclick="toggleHamburger()">☰</button>
       </div>
     </header>
-    <br>
+    <br />
+
     <main class="main-layout">
-        <div>
-          <a href="editor.html">go edit</a>
-            <input type="text" name="text" placeholder="Search" />
-            choose file:<input
+      <section class="gallery">
+        <a href="editor.html">go edit</a>
+
+        <form onsubmit="onSearchMemes(event,this.value)">
+          <input class="text-input" type="text" placeholder="Search... " />
+          <button>Search</button> choose file:<input
             type="file"
             class="file-input btn"
             name="image"
-            onchange="onImgInput(event)"/>
-        </div>
-        <br>
-        <section class="gallery-container grid">
-        <img src="img/bed note.jfif"/>
-        <img src="img/bobspog.jfif" />
-        <img src="img/choose.jfif" />
-        <img src="meme-imgs (square)/2.jpg" />
-        <!-- <img src="img/cry.jfif" /> -->
-        <img src="img/crying Labron.jpeg" />
-        <img src="img/lo margish tape.jfif" />
-        <img src="img/no no no hi.jfif" />
-        <img src="meme-imgs (square)/3.jpg" />
-        <img src="img/powers.jpeg" />
-        <!-- <img src="img/red button.jfif" /> -->
-        <img src="meme-imgs (square)/12.jpg" />
-        <img src="img/rick and morty.jpeg" />
-        <img src="img/אמבטיה חול.jpeg" />
-        </section>
+            onchange="onImgInput(event)"
+          />
+          <p class="suggestions">
+            Category to search : funny , politition , cute , dog , baby ,
+            cumputer , cat , tv , man
+          </p>
+        </form>
+        <div class="gallery-container grid"></div>
+      </section>
+      
     </main>
+<footer>© created by Danielle Ilyasov jun 2022</footer>
     <script src="js/gallery-controller.js"></script>
+    <!-- <script src="js/editor-controller.js"></script> -->
+    <script src="js/meme-controller.js"></script>
+    <script src="js/meme-service.js"></script>
   </body>
 </html>
