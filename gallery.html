@@ -26,28 +26,31 @@
 
     <main class="main-layout ">
       <section class="gallery">
-        <form onsubmit="onSearchMemes(event,this.value)">
-          <input class="text-input" type="text" placeholder="Search... " />
-          <button>Search</button> choose file:<input
-            type="file"
-            class="file-input btn"
-            name="image"
-            onchange="onImgInput(event)"
-          />
+        <form class="search-container" onsubmit="onSearchMemes(event,this.value)">
+          <input class="text-input" type="text" placeholder="🔍Search... "/>
+          <button>Search</button> 
           <p class="suggestions">
             Category to search : funny , politition , cute , dog , baby ,
             cumputer , cat , tv , man
           </p>
         </form>
+        <input
+          type="file"
+          class="file-input btn"
+          name="image"
+          onchange="onImgInput(event)"
+        />
+        <a href="#" class="download" onclick="downloadImg(this)" download="my-img.jpg"
+        >Download as jpeg</a>
         <div class="gallery-container grid"></div>
       </section>
       <section class="editor-container flex justify-center">
+       
         <div class="canvas-container">
           <canvas
             class="my-canvas"
             height="500"
             width="500"
-            onclick="draw(event)"
             style="border: 1px solid rgb(0, 0, 0)"
           ></canvas>
         </div>
@@ -62,13 +65,13 @@
     
           <div class="editor-options flex justify-center align-center">
             <a href="#" class="btn-option text-updown">
-              <img src="ICONS/up-and-down-opposite-double-arrows-side-by-side.png" alt="" />
+              <img onclick="onSwitchLine()" src="ICONS/up-and-down-opposite-double-arrows-side-by-side.png" alt="" />
             </a>
             <a href="#" class="btn-option text-add">
-              <img src="ICONS/add.png" alt="" />
+              <img onclick="onAddLine()" src="ICONS/add.png" alt="" />
             </a>
             <a href="#" class="btn-option text-delete">
-              <img src="ICONS/trash.png" alt="" />
+              <img onclick="onDeleteLine()" src="ICONS/trash.png" alt="" />
             </a>
           </div>
     
@@ -118,8 +121,9 @@
     </main>
 <footer>© created by Danielle Ilyasov jun 2022</footer>
     <script src="js/gallery-controller.js"></script>
-    <script src="js/meme-controller.js"></script>
-    <script src="js/meme-service.js"></script>
+    <script src="js/gallery-service.js"></script>
+    <!-- <script src="js/meme-controller.js"></script> -->
+    <script src="js/editor-service.js"></script>
     <script src="js/editor-controller.js"></script>
   </body>
 </html>

@@ -1,3 +1,13 @@
+.canvas-container{
+  display: flex;
+  justify-content: center;
+}
+
+.file-input ,.download{
+  display: none;
+  padding-top: 10px;
+}
+
 .editor-container {
   padding-top: 40px;
   width: 100%;
@@ -10,6 +20,7 @@
 }
 
 .editor input {
+  margin-top: 20px;
   margin-bottom: 20px;
   height: 25px;
 }
@@ -42,12 +53,14 @@
 }
 
 .editor-text-options {
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(5, 60px);
   gap: 8px 8px;
   margin-bottom: 15px;
+  justify-content: center;
 }
 
 .font-select {
+  margin-top: 20px;
   grid-column: span 3;
   height: 25px;
 }
