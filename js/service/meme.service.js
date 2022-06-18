@@ -54,6 +54,11 @@ function setTextColor(color) {
   gMeme.lines[gMeme.selectedLineIdx].color = color
 }
 
+//font size to randmeme
+function setFontSize(size) {
+  gMeme.lines[gMeme.selectedLineIdx].size = size
+}
+
 //change the stroke text color
 function setStrokeColor(color) {
   gMeme.lines[gMeme.selectedLineIdx].stroke = color

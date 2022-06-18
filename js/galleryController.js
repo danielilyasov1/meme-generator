@@ -105,5 +105,7 @@ function onFlexible(){
   elDownload.style.display = "block"
   document.querySelector(".main-logo").innerText = "memeker editor"
   
+  rendomMeme()
+
   renderMeme()
 }
