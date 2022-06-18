@@ -1,3 +1,5 @@
+@media (min-width: 550px) {
+
 .main-layout {
   max-width: 980px;
 }
@@ -7,6 +9,7 @@
   width: 120px;
 }
 
-.main-header .hamburger-btn{
+.header-content .hamburger-btn{
   display: none;
+}
 }

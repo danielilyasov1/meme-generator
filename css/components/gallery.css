@@ -13,6 +13,13 @@ img {
   border: 1px solid black;
 }
 
+.flexible-btn{
+  height: 30px;
+  border-radius: 100px;
+  background-color: pink;
+  margin-left: 10px;
+}
+
 .gallery-container {
   grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
   padding: 16px;

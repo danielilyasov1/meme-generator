@@ -12,5 +12,4 @@
 /* MEDIA QUERIES */
 
 @import 'mq/mobile.css';
-@import 'mq/medium.css';
 @import 'mq/large.css';
