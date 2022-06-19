@@ -14,10 +14,9 @@
 
         <ul class="main-nav flex clean-list">
           <li>
-            <a href="#" class="active" onclick="onActivePage(this)">Gallery</a>
-          </li>
-          <li><a href="memes.html" onclick="onActivePage(this)">Memes</a></li>
-          <li><a href="#" onclick="onActivePage(this)">About</a></li>
+            <a href="#" class="active" onclick="onActivePage(this),onShowGallery()">Gallery</a></li>
+          <li><a href="#" onclick="onActivePage(this),onShowSavedMemes()">Memes</a></li>
+          <li><a href="#" onclick="onActivePage(this) ">About</a></li>
         </ul>
         <button class="hamburger-btn" onclick="toggleHamburger()">☰</button>
       </div>
@@ -91,13 +90,16 @@
             >
               <img src="ICONS/decrease font - icon.png" alt="" />
             </a>
-            <a href="#" class="btn-option text-align-left">
+            <a href="#" class="btn-option text-align-left" 
+            onclick="onAlignChange('right')">
               <img src="ICONS/align-to-left.png" alt="" />
             </a>
-            <a href="#" class="btn-option text-align-center">
+            <a href="#" class="btn-option text-align-center"
+            onclick="onAlignChange('center')">
               <img src="ICONS/center-text-alignment.png" alt="" />
             </a>
-            <a href="#" class="btn-option align-right-">
+            <a href="#" class="btn-option align-right-"
+            onclick="onAlignChange('left')">
               <img src="ICONS/align-to-right.png" alt="" />
             </a>
             <select class="font-select">
@@ -118,11 +120,18 @@
               oninput="onChangeStrokeColor(this.value)"
             />
           </div>
+          <button class="dave-btn" onclick="onSaveMeme()">save meme</button>
+
+        </section>
+
+        <section class="memes" id="memes">
+          <div class="gallery-memes main-layout grid">No Saved Memes</div>
         </section>
     </main>
 <footer>© created by Danielle Ilyasov jun 2022</footer>
     <script src="js/galleryController.js"></script>
     <script src="js/memeController.js"></script>
+    <script src="js/service/storage.service.js"></script>
     <script src="js/service/gallery.service.js"></script>
     <script src="js/service/meme.service.js"></script>
     <script src="js/service/upload.service.js"></script>

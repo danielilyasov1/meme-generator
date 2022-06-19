@@ -20,7 +20,8 @@ img {
   margin-left: 10px;
 }
 
-.gallery-container {
+.gallery-container ,.gallery-memes{
+  display: grid;
   grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
   padding: 16px;
   gap: 10px;
@@ -31,11 +32,15 @@ img {
   align-content: center;
 }
 
-.meme-gallery img {
+.meme-gallery img ,.memes-img img{
   width: 100%;
   border-radius: 6px;
 }
 
 .search-container{
   display: block;
+}
+
+.memes{
+  display: none;
 }

@@ -1,7 +1,7 @@
 "use strict"
 var gIsDrag = false
-
-const gTouchEvs = ["touchstart", "touchmove", "touchend"]
+var gLastPos
+var gStartPos
 
 // //render meme to canvas
 function renderMeme() {
@@ -20,20 +20,43 @@ function renderText() {
   const meme = getgMeme()
   meme.lines.forEach((line, idx) => {
     gCtx.font = line.size + "px impact"
+    gCtx.strokeStyle = line.stroke
     gCtx.textAlign = line.align
     gCtx.fillStyle = line.color
+
+    line.pos.x = gCanvas.width / 2
+
     if (idx === 0) {
       //top line
       gCtx.fillText(line.txt, gCanvas.width / 2, 50)
-    } else if (idx === gMeme.lines.length - 1) {
+      gCtx.strokeText(line.txt, gCanvas.width / 2, 50)
+      line.pos.y = 50
+    } else if (idx === 1) {
       //bottom line
       gCtx.fillText(line.txt, gCanvas.width / 2, gCanvas.height - 50)
+      gCtx.strokeText(line.txt, gCanvas.width / 2, gCanvas.height - 50)
+      line.pos.y = gCanvas.height - 50
     } else {
       //center line
       gCtx.fillText(line.txt, gCanvas.width / 2, gCanvas.height / 2)
+      gCtx.strokeText(line.txt, gCanvas.width / 2, gCanvas.height / 2)
+      line.pos.y = gCanvas.height / 2
     }
-    gCtx.strokeStyle = " blue"
   })
+  draw(gMeme.selectedLineIdx)
+}
+
+//add border to text line
+function draw(idx) {
+  const line = gMeme.lines[idx]
+  gCtx.save()
+  var widthRect = gCtx.measureText(line.txt).width
+  gCtx.strokeRect(
+    line.pos.x - widthRect / 2 - 5,
+    line.pos.y - line.size,
+    widthRect + 10,
+    line.size + 10
+  )
 }
 
 //text line
@@ -69,32 +92,23 @@ function onDeleteLine() {
   renderMeme()
 }
 
+//change align
+function onAlignChange(alignment) {
+  setLineAlign(alignment)
+  renderMeme()
+}
+
 //change text color
 function onChangeTextColor(color) {
   setTextColor(color)
-  renderMeme()
   gColorTxt = color
+  renderMeme()
 }
 //change stroke text color
 function onChangeStrokeColor(color) {
   setStrokeColor(color)
-  renderMeme()
   gColorSt = color
-}
-
-function drawSelectedRect(line) {
-  var textWidth = getLineWidth()
-  var textHeight = line.size
-
-  gCtx.lineWidth = 1
-  gCtx.strokeStyle = "#f8f9fa"
-  gCtx.strokeRect(
-    line.pos.x - 5,
-    line.pos.y - textHeight + 5,
-    textWidth + 10,
-    textHeight + 5
-  )
-  gCtx.stroke()
+  renderMeme()
 }
 
 //clear canvas
@@ -119,22 +133,61 @@ function addTouchListeners() {
 }
 function onDown(ev) {
   gIsDrag = true
-  console.log("ev", ev)
-  const { offsetX, offsetY } = ev
-  gLastPos.x = offsetX
-  gLastPos.y = offsetY
+  const pos = getEvPos(ev)
+  if (!isInLine(pos, true)) return
+  renderText()
+  gStartPos = pos
   document.body.style.cursor = "grabbing"
+  renderMeme()
 }
 function onMove(ev) {
-  if (!gIsDrag) return
-  console.log("ev", ev)
-  draw(ev)
-  const { offsetX, offsetY } = ev
-  gLastPos.x = offsetX
-  gLastPos.y = offsetY
-  document.body.style.cursor = "grabbing"
+  const pos = getEvPos(ev)
+  if (gIsDrag) {
+    ev.preventDefault()
+    const pos = getEvPos(ev)
+    const dx = pos.x - gStartPos.x
+    const dy = pos.y - gStartPos.y
+    moveLine(dx, dy)
+    gStartPos = pos
+    renderMeme()
+  } else {
+    if (isInLine(pos, false)) document.body.style.cursor = "grab"
+    else document.body.style.cursor = "default"
+  }
 }
-function onUp() {
+function onUp(ev) {
   gIsDrag = false
-  document.body.style.cursor = "pointer"
+  const pos = getEvPos(ev)
+  // document.body.style.cursor = "pointer"
+  if (isInLine(pos, false)) document.body.style.cursor = "grab"
+}
+
+function getEvPos(ev) {
+  const touchEvs = ["touchstart", "touchmove", "touchend"]
+  //Gets the offset pos , the default pos
+  var pos = {
+    x: ev.offsetX,
+    y: ev.offsetY,
+  }
+
+  if (touchEvs.includes(ev.type)) {
+    ev.preventDefault()
+    ev = ev.changedTouches[0]
+    //Calc the right pos according to the touch screen
+    pos = {
+      x: ev.pageX - ev.target.offsetLeft - ev.target.clientLeft,
+      y:
+        ev.pageY -
+        ev.target.offsetTop -
+        ev.target.clientTop -
+        ev.target.offsetParent.offsetTop,
+    }
+  }
+  return pos
+}
+
+function onSaveMeme() {
+  saveMeme()
+
+  console.log("meme saved")
 }

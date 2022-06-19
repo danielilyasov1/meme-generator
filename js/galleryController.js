@@ -4,15 +4,31 @@ var gCanvas
 var gCtx
 const elImgGallery = document.querySelector(".gallery-container")
 const elEditor = document.querySelector(".editor-container")
-const elFile = document.querySelector('.file-input')
-const elDownload = document.querySelector('.download')
-const elSearch = document.querySelector('.search-container')
+const elMemes = document.querySelector(".memes")
+const elFile = document.querySelector(".file-input")
+const elDownload = document.querySelector(".download")
+const elSearch = document.querySelector(".search-container")
+const elLogo = document.querySelector(".main-logo")
 
 function init() {
   renderGallery()
   gCanvas = document.querySelector(".my-canvas")
   gCtx = gCanvas.getContext("2d")
   console.log(gCanvas)
+  renderSavedMemes()
+  addListeners()
+}
+
+function onShowGallery() {
+  elSearch.style.display = "block"
+  elImgGallery.style.display = "grid"
+  elMemes.style.display = "none"
+  elEditor.style.display = "none"
+  elFile.style.display = "none"
+  elDownload.style.display = "none"
+  elLogo.innerText = "memeker"
+  renderGallery()
+  init()
 }
 
 //click on nav
@@ -27,9 +43,9 @@ function onClickScreen() {
   if (document.body.classList.contains("menu-open")) {
     toggleHamburger()
   }
-    if (document.body.classList.contains("modal-open")) {
-      toggleModal()
-    }
+  if (document.body.classList.contains("modal-open")) {
+    toggleModal()
+  }
 }
 
 //nav burger
@@ -40,7 +56,7 @@ function toggleHamburger() {
 }
 
 function toggleModal() {
-  document.body.classList.toggle('modal-open')
+  document.body.classList.toggle("modal-open")
 }
 
 //render the gallery img
@@ -62,10 +78,11 @@ function onImgSelect(imgId) {
   renderMeme()
   elSearch.style.display = "none"
   elImgGallery.style.display = "none"
+  elMemes.style.display = "none"
   elEditor.style.display = "block"
   elFile.style.display = "block"
   elDownload.style.display = "block"
-  document.querySelector(".main-logo").innerText = "memeker editor"
+  elLogo.innerText = "memeker editor"
 }
 
 ///choose img from the computer
@@ -87,7 +104,6 @@ function renderImg(img) {
   gCtx.drawImage(img, 0, 0, gCanvas.width, gCanvas.height)
 }
 
-
 //search
 function onSearchMemes(e) {
   e.preventDefault()
@@ -97,15 +113,39 @@ function onSearchMemes(e) {
 }
 
 //make random meme flexible
-function onFlexible(){
+function onFlexible() {
   elSearch.style.display = "none"
   elImgGallery.style.display = "none"
+  elMemes.style.display = "none"
   elEditor.style.display = "block"
   elFile.style.display = "block"
   elDownload.style.display = "block"
-  document.querySelector(".main-logo").innerText = "memeker editor"
-  
-  rendomMeme()
+  elLogo.innerText = "memeker editor"
+  randomMeme()
+  renderMeme()
+}
 
+function onShowSavedMemes() {
+  elSearch.style.display = "none"
+  elImgGallery.style.display = "none"
+  elMemes.style.display = "grid"
+  elEditor.style.display = "none"
+  elFile.style.display = "none"
+  elDownload.style.display = "none"
+  elLogo.innerText = "memeker"
+
+  renderSavedMemes()
+}
+
+// On select saved memes
+function onMemeSelect(memeIdx) {
+  setMeme(memeIdx)
+  elSearch.style.display = "none"
+  elImgGallery.style.display = "none"
+  elMemes.style.display = "none"
+  elEditor.style.display = "block"
+  elFile.style.display = "block"
+  elDownload.style.display = "block"
+  elLogo.innerText = "memeker editor"
   renderMeme()
 }

@@ -1,5 +1,5 @@
 "use strict"
-
+var gIsFlax = false
 var gKeywordSearchCountMap = { funny: 12, cat: 16, baby: 2 }
 
 var gImgs = [
@@ -31,57 +31,87 @@ function setSearchFilter(value) {
 }
 
 //flexible
-function rendomMeme(){
+function randomMeme() {
   const imgs = getImg()
   const imgId = imgs[getRandIntInc(0, imgs.length - 1)].id
   setImg(imgId)
 
-  const num = getRandIntInc(0, 2)
-  for(var i = 0 ; i < num ; i++){
-    addLine(getRandSentence())
-    generateRandLine(i)
+  const meme = getgMeme()
+  meme.lines = []
+  const num = getRandIntInc(1, 2)
+  for (var i = 0; i < num; i++) {
+    // addLine()
+    generateRandLine(meme)
   }
-
 }
 
-function generateRandLine(ind){
-  setTextLine(getRandSentence(), ind)
-  setFontSize(getRandIntInc(20, 40), ind)
-  setStrokeColor(getRandomColor(), ind)
-  setTextColor(getRandomColor(), ind)
+function generateRandLine(meme) {
+
+  const line = {
+    txt :  getRandSentence(),
+    size:   getRandIntInc(20, 40),
+    font: "ariel",
+    align: "center",
+    color:  getRandomColor(),
+    stroke:  getRandomColor(),
+    pos:{x:10,y:100}
+  }
+  meme.lines.push(line)
 }
+
+//saved memes
+function renderSavedMemes() {
+  const memes = getMemes()
+
+  const strHTMLs = memes.map((meme, idx) => {
+    let img = new Image()
+    img.src = meme.dataImg
+
+    return `<article class="memes-img" onclick="onMemeSelect(${idx})">
+      <img src="${img.src}"  alt="" />
+    </article> `
+  })
+
+  document.querySelector('.gallery-memes').innerHTML = strHTMLs.join('')
+}
+
 
 function getRandIntInc(min, max) {
-  return Math.floor(Math.random() * (max - min) + 1) + min
+  min = Math.ceil(min)
+  max = Math.floor(max)
+  return Math.floor(Math.random() * (max - min + 1) + min)
 }
 
 function getRandSentence() {
   const memesSentences = [
-    'I never eat falafel',
-    'DOMS DOMS EVERYWHERE',
-    'Stop Using i in for loops',
-    'Armed in knowledge',
+    "I never eat falafel",
+    "DOMS DOMS EVERYWHERE",
+    "Stop Using i in for loops",
+    "Armed in knowledge",
     'Js error "Unexpected String"',
-    'One does not simply write js',
-    'I`m a simple man i see vanilla JS, i click like!',
-    'JS, HTML,CSS?? Even my momma can do that',
-    'May the force be with you',
-    'I know JS',
-    'JS Where everything is made up and the rules dont matter',
-    'Not sure if im good at programming or good at googling',
-    'But if we could',
-    'JS what is this?',
-    'Write hello world , add to cv 7 years experienced',
+    "One does not simply write js",
+    "I`m a simple man i see vanilla JS, i click like!",
+    "JS, HTML,CSS?? Even my momma can do that",
+    "May the force be with you",
+    "I know JS",
+    "JS Where everything is made up and the rules dont matter",
+    "Not sure if im good at programming or good at googling",
+    "But if we could",
+    "JS what is this?",
+    "Write hello world , add to cv 7 years experienced",
   ]
 
   return memesSentences[getRandIntInc(0, memesSentences.length - 1)]
 }
 
 function getRandomColor() {
-  const letters = '0123456789ABCDEF'
-  let color = '#'
+  const letters = "0123456789ABCDEF"
+  let color = "#"
   for (let i = 0; i < 6; i++) {
     color += letters[Math.floor(Math.random() * 16)]
   }
   return color
 }
+
+
+
